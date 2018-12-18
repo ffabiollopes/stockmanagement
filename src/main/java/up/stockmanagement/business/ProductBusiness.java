@@ -1,5 +1,6 @@
 package up.stockmanagement.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -30,7 +31,7 @@ public class ProductBusiness {
 	}
 
 	public List<ProductDTO> getAll() {
-		List<ProductDTO> listDTO = null;
+		List<ProductDTO> listDTO = new ArrayList<ProductDTO>();
 		List<Product> ListProduct = productRepository.getAll();
 		for(Product i : ListProduct) {
 			listDTO.add(new ProductDTO(i));

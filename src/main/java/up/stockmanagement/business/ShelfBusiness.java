@@ -1,9 +1,13 @@
 package up.stockmanagement.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+
+
+import up.stockmanagement.DTO.ShelfDTO;
 
 import up.stockmanagement.model.Shelf;
 import up.stockmanagement.repositories.ShelfRepository;
@@ -12,27 +16,34 @@ public class ShelfBusiness {
 	@Inject
 	ShelfRepository shelfRepository;
 	
-
 	@Transactional
 	public void delete(long id) {
 		shelfRepository.delete(id);
 	}
 
 	@Transactional
-	public Shelf update(Shelf shelf) {
-		return shelfRepository.update(shelf);
+	public ShelfDTO update(Shelf shelf) {
+		shelfRepository.update(shelf);
+		return new ShelfDTO(shelf);
 	}
 	
 	@Transactional
-	public Shelf create(Shelf shelf) {
-		return shelfRepository.create(shelf);
+	public ShelfDTO create(Shelf shelf) {
+		shelfRepository.create(shelf);
+		return new ShelfDTO(shelf);
 	}
 	
-	public List<Shelf> getAll() {
-		return shelfRepository.getAll();
+	public List<ShelfDTO> getAll() {
+		List<ShelfDTO> listDTO = new ArrayList<ShelfDTO>();
+		List<Shelf> ListShelves = shelfRepository.getAll();
+		for(Shelf i : ListShelves) {
+			listDTO.add(new ShelfDTO(i));
+		}
+		return listDTO;
 	}
 	
-	public Shelf findById(long id) {
-		return  shelfRepository.findById(id);
+	public ShelfDTO findById(long id) {
+		Shelf shelf = shelfRepository.findById(id);
+		return  new ShelfDTO(shelf);
 	}
 }

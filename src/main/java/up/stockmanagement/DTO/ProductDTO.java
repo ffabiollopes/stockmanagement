@@ -26,24 +26,12 @@ public class ProductDTO {
 		return discountValue;
 	}
 
-	public void setDiscountValue(int discountValue) {
-		this.discountValue = discountValue;
-	}
-
 	public int getIva() {
 		return iva;
 	}
 
-	public void setIva(int iva) {
-		this.iva = iva;
-	}
-
 	public double getPvp() {
 		return pvp;
-	}
-
-	public void setPvp(double pvp) {
-		this.pvp = pvp;
 	}
 
 }

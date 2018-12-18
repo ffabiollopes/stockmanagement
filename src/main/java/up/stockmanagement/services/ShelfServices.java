@@ -1,5 +1,7 @@
 package up.stockmanagement.services;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -14,8 +16,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import up.stockmanagement.DTO.ShelfDTO;
 import up.stockmanagement.business.ShelfBusiness;
 import up.stockmanagement.model.Shelf;
+
+
+
 
 @Path("shelves")
 public class ShelfServices{
@@ -32,30 +38,30 @@ public class ShelfServices{
 		return "URI " + context.getRequestUri().toString() + " is OK!";
 	}
 
-//	@GET
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Shelf getAll() {
-//		return shelfService.getAll();
-//	}
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public  List<ShelfDTO> getAll() {
+		return shelfService.getAll();
+	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Shelf create(Shelf shelf) {
+	public ShelfDTO create(Shelf shelf) {
 		return shelfService.create(shelf);
 	}
 
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Shelf findById(@PathParam("id") long id) {
+	public ShelfDTO findById(@PathParam("id") long id) {
 		return shelfService.findById(id);
 	}
 
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Shelf update(Shelf shelf) {
+	public ShelfDTO update(Shelf shelf) {
 		return shelfService.update(shelf);
 	}
 
